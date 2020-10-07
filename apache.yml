@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+    -name: install apache
+     apt:
+         name=apache2
+         state:latest
+     become: yes
+    -name: index.html
+         copy:
+         content: "Filippov Dmitry TKO HELLO"
+         dest: /var/www/html/index.html
+    -name: restart apache2
+     service:
+          name: apache2
+          state: restarted
+          enabled: yes
+     become:yes
